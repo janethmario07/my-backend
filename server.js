@@ -10,7 +10,7 @@ const app=express();
 
 // Enable CORS
 app.use(cors({
-  origin: "https://my-backend-55fe.onrender.com", // Allow frontend
+  origin: "https://my-frontend-hz1a.vercel.app/", // Allow frontend
   credentials: true               // Allow cookies if you're using them
 }));
 app.use(express.json());
