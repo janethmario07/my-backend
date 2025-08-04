@@ -10,7 +10,7 @@ const app=express();
 
 // Enable CORS
 app.use(cors({
-  origin: "http://localhost:5173", // Allow frontend
+  origin: "https://my-backend-55fe.onrender.com", // Allow frontend
   credentials: true               // Allow cookies if you're using them
 }));
 app.use(express.json());
