@@ -10,8 +10,9 @@ const app=express();
 
 // Enable CORS
 app.use(cors({
-  origin: "https://my-frontend-hz1a.vercel.app/", // Allow frontend
-  credentials: true               // Allow cookies if you're using them
+  origin: 'https://my-frontend-hz1a.vercel.app', // ✅ Allow Vercel frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
 app.use(express.json());
 dotenv.config();
