@@ -20,5 +20,5 @@ dbconnect();
 app.use('/api/v1/auth',authroutes);
 app.use('/api/v1/crud',crudroutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
