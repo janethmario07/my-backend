@@ -11,7 +11,7 @@ const app=express();
 // Enable CORS
 app.use(cors({
   origin: 'https://my-frontend-hz1a.vercel.app', // ✅ Allow Vercel frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
  // credentials: true
 }));
 app.options('*', cors());
