@@ -1,20 +1,26 @@
+import cors from "cors";
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import dbconnect from './config/db.js';
 import authroutes from './routes/authroutes.js';
 import crudroutes from './routes/crudroutes.js';
-import cors from "cors";
+
+
 //const cors = require("cors");
 const app=express();
 
-// Enable CORS
 app.use(cors({
-  origin: 'https://my-frontend-hz1a.vercel.app', // ✅ Allow Vercel frontend
+  origin: 'https://my-frontend-hz1a.vercel.app', // your frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true
+  credentials: true // ✅ allow credentials (cookies or Authorization headers)
 }));
-app.options('*', cors());
+
+// Optional but safe to include to handle preflight requests
+app.options('/', cors({
+  origin: 'https://my-frontend-hz1a.vercel.app',
+  credentials: true
+}));;
 
 app.use(express.json());
 dotenv.config();
