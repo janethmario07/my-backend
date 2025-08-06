@@ -12,14 +12,14 @@ import crudroutes from './routes/crudroutes.js';
 const app=express();
 
 app.use(cors({
-  origin: 'https://my-frontend-hz1a.vercel.app', // your frontend
+  origin: 'https://my-frontend-6r7y.vercel.app/', // your frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true // ✅ allow credentials (cookies or Authorization headers)
 }));
 
 // Optional but safe to include to handle preflight requests
 app.options('/', cors({
-  origin: 'https://my-frontend-hz1a.vercel.app',
+  origin: 'https://my-frontend-6r7y.vercel.app/',
   credentials: true
 }));;
 
