@@ -1,36 +1,34 @@
 import express from 'express';
+import cors from "cors";
+
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import cors from 'cors';
-
 import dbconnect from './config/db.js';
 import authroutes from './routes/authroutes.js';
 import crudroutes from './routes/crudroutes.js';
 
-dotenv.config();
-const app = express();
 
-// ✅ CORS configuration
-const corsOptions = {
-  origin: 'https://my-frontend-hz1a.vercel.app', // your frontend origin
-  credentials: true, // allow credentials like Authorization header
+//const cors = require("cors");
+const app=express();
+
+app.use(cors({
+  origin: 'https://my-frontend-hz1a.vercel.app', // your frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
+  credentials: true // ✅ allow credentials (cookies or Authorization headers)
+}));
 
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // ✅ handle preflight requests
+// Optional but safe to include to handle preflight requests
+app.options('/', cors({
+  origin: 'https://my-frontend-hz1a.vercel.app',
+  credentials: true
+}));;
 
-// ✅ Body parser
 app.use(express.json());
-
-// ✅ Connect DB
+dotenv.config();
 dbconnect();
+//routes files
+app.use('/api/v1/auth',authroutes);
+app.use('/api/v1/crud',crudroutes);
 
-// ✅ Routes
-app.use('/api/v1/auth', authroutes);
-app.use('/api/v1/crud', crudroutes);
-
-// ✅ Start server
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
