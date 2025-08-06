@@ -11,16 +11,18 @@ import crudroutes from './routes/crudroutes.js';
 const app=express();
 
 app.use(cors({
-  origin: 'https://my-frontend-hz1a.vercel.app', // your frontend
+  origin: 'https://my-frontend-hz1a.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true // ✅ allow credentials (cookies or Authorization headers)
+  allowedHeaders: ['Content-Type', 'Authorization'], // <--- must explicitly allow Authorization
+  credentials: true // okay to keep if you ever use cookies; harmless for bearer tokens
 }));
 
-// Optional but safe to include to handle preflight requests
-app.options('/', cors({
+// If you want an explicit preflight handler (optional, but correct path wildcard):
+app.options('/*', cors({
   origin: 'https://my-frontend-hz1a.vercel.app',
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
-}));;
+}));
 
 app.use(express.json());
 dotenv.config();
